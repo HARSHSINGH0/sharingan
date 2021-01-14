@@ -5,6 +5,7 @@ import dlib
 cap=cv.VideoCapture(0)
 detector=dlib.get_frontal_face_detector()
 predictor=dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+#download shape predictor from dlib library:https://github.com/davisking/dlib-models/blob/master/shape_predictor_68_face_landmarks.dat.bz2
 def rescaleFrame(frame,scale=1):
     width=int(frame.shape[1]*scale)#frame.shape[1] is width of image
     height=int(frame.shape[0]*scale)#frame.shape[0] is height of image
