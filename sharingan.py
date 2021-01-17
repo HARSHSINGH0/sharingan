@@ -5,7 +5,6 @@ import dlib
 cap=cv.VideoCapture(0)
 detector=dlib.get_frontal_face_detector()
 predictor=dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
-#download shape predictor from dlib library:https://github.com/davisking/dlib-models/blob/master/shape_predictor_68_face_landmarks.dat.bz2
 def rescaleFrame(frame,scale=1):
     width=int(frame.shape[1]*scale)#frame.shape[1] is width of image
     height=int(frame.shape[0]*scale)#frame.shape[0] is height of image
@@ -39,7 +38,21 @@ def eyetrack():
             up_point=(midlinepoint(landmarks.part(43),landmarks.part(44)))
             down_point=(midlinepoint(landmarks.part(47),landmarks.part(46)))
             ver_line=cv.line(frame,up_point,down_point,(0,0,255),1)
+            LE_left=landmarks.part(37).x,landmarks.part(37).y
+            LE_right=landmarks.part(38).x,landmarks.part(38).y
+            LE_dl=landmarks.part(41).x,landmarks.part(41).y
+            LE_dr=landmarks.part(40).x,landmarks.part(40).y
+            RE_left=landmarks.part(43).x,landmarks.part(43).y
+            RE_right=landmarks.part(44).x,landmarks.part(44).y
+            RE_dl=landmarks.part(47).x,landmarks.part(47).y
+            RE_dr=landmarks.part(46).x,landmarks.part(46).y
+            Left_leftlandmarkline=cv.line(frame,LE_left,LE_dr,(0,0,255),1)
+            Left_rightlandmarkline=cv.line(frame,LE_right,LE_dl,(0,0,255),1)
 
+            
+
+            Right_leftlandmarkline=cv.line(frame,RE_left,RE_dr,(0,0,255),1)
+            Right_rightlandmarkline=cv.line(frame,RE_right,RE_dl,(0,0,255),1)
 
         cv.imshow("frame",frame)
 
